@@ -227,73 +227,99 @@ const AccessLogManagement = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h2 className="text-3xl font-bold text-gray-900">Quản Lý Lịch Sử Ra Vào</h2>
-        <p className="text-gray-600">Theo dõi và tra cứu lịch sử ra/vào của nhân viên thông qua thẻ RFID.</p>
+      <div className="bg-gradient-to-r from-purple-600 to-purple-500 rounded-2xl p-6 shadow-lg">
+        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">Quản Lý Lịch Sử Ra Vào</h2>
+        <p className="text-purple-100 text-sm">Theo dõi và tra cứu lịch sử ra/vào của nhân viên thông qua thẻ RFID</p>
       </div>
 
       {/* Thống kê */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border">
-          <h3 className="text-sm font-medium text-gray-600">Tổng số bản ghi</h3>
-          <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 card-hover">
+          <div className="flex items-center justify-between mb-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
+              <Clock className="text-white" size={24} />
+            </div>
+          </div>
+          <h3 className="text-sm font-semibold text-gray-600 mb-1">Tổng số bản ghi</h3>
+          <p className="text-3xl font-bold text-purple-600">{stats.total}</p>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow border">
-          <h3 className="text-sm font-medium text-gray-600">Check In</h3>
-          <p className="text-2xl font-bold text-green-600">{stats.checkins}</p>
+        <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 card-hover">
+          <div className="flex items-center justify-between mb-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-md">
+              <LogIn className="text-white" size={24} />
+            </div>
+          </div>
+          <h3 className="text-sm font-semibold text-gray-600 mb-1">Check In</h3>
+          <p className="text-3xl font-bold text-green-600">{stats.checkins}</p>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow border">
-          <h3 className="text-sm font-medium text-gray-600">Check Out</h3>
-          <p className="text-2xl font-bold text-red-600">{stats.checkouts}</p>
+        <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 card-hover">
+          <div className="flex items-center justify-between mb-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-md">
+              <LogOut className="text-white" size={24} />
+            </div>
+          </div>
+          <h3 className="text-sm font-semibold text-gray-600 mb-1">Check Out</h3>
+          <p className="text-3xl font-bold text-red-600">{stats.checkouts}</p>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow border">
-          <h3 className="text-sm font-medium text-gray-600">Đang làm việc</h3>
-          <p className="text-2xl font-bold text-blue-600">{stats.working}</p>
+        <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 card-hover">
+          <div className="flex items-center justify-between mb-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
+              <Clock className="text-white" size={24} />
+            </div>
+          </div>
+          <h3 className="text-sm font-semibold text-gray-600 mb-1">Đang làm việc</h3>
+          <p className="text-3xl font-bold text-blue-600">{stats.working}</p>
         </div>
       </div>
 
       {/* Filter Search */}
-      <div className="bg-white p-5 rounded-xl shadow flex items-end space-x-3">
-        <div className="flex-1">
-          <label className="block text-sm text-gray-700 mb-1 font-medium">
-            Lọc theo Mã Người Dùng
-          </label>
-          <div className="relative">
-            <input
-              className="w-full border border-gray-300 rounded-lg pl-10 pr-3 py-2 focus:outline-none focus:ring focus:ring-blue-200"
-              placeholder="Nhập User ID..."
-              value={filterUserId}
-              onChange={(e) => setFilterUserId(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleFilter()}
-            />
-            <Search className="absolute top-2.5 left-3 text-gray-400" size={18} />
+      <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+        <div className="flex flex-col md:flex-row gap-4 items-end">
+          <div className="flex-1 w-full">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Lọc theo Mã Người Dùng
+            </label>
+            <div className="relative">
+              <input
+                className="w-full border-2 border-gray-200 rounded-xl pl-11 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50"
+                placeholder="Nhập User ID..."
+                value={filterUserId}
+                onChange={(e) => setFilterUserId(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleFilter()}
+              />
+              <Search className="absolute top-3.5 left-4 text-gray-400" size={18} />
+            </div>
+          </div>
+
+          <div className="flex gap-3">
+            <Button variant="primary" onClick={handleFilter} icon="MagnifyingGlass">
+              Lọc
+            </Button>
+            <Button variant="secondary" onClick={() => { setFilterUserId(''); loadLogs(); }} icon="X">
+              Xóa Lọc
+            </Button>
           </div>
         </div>
-
-        <Button variant="primary" onClick={handleFilter}>
-          Lọc
-        </Button>
-
-        <Button variant="secondary" onClick={() => { setFilterUserId(''); loadLogs(); }}>
-          Xóa Lọc
-        </Button>
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-xl shadow p-3">
+      <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
         {loading ? (
-          <div className="flex justify-center items-center py-10 text-lg font-medium text-gray-600 animate-pulse">
-            Đang tải dữ liệu...
+          <div className="flex flex-col justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-purple-200 border-t-purple-600 mb-4"></div>
+            <span className="text-gray-600 font-medium">Đang tải dữ liệu...</span>
           </div>
         ) : (
           <Table 
             columns={columns} 
             data={processedLogs} 
             emptyMessage={
-              <div className="text-center py-12">
-                <Search size={48} className="mx-auto text-gray-300 mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Không có dữ liệu</h3>
-                <p className="text-gray-500">
+              <div className="flex flex-col items-center justify-center py-12">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                  <Search size={32} className="text-gray-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Không có dữ liệu</h3>
+                <p className="text-gray-500 text-center">
                   {debugInfo.includes('lọc') ? `Không tìm thấy lịch sử cho User ID: ${filterUserId}` : 'Chưa có bản ghi lịch sử nào trong hệ thống'}
                 </p>
               </div>
