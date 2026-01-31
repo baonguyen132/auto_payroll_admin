@@ -1,5 +1,5 @@
 // Application Constants
-export const APP_NAME = 'BLOCKCHAIN Admin'
+export const APP_NAME = import.meta.env.VITE_APP_NAME || 'BLOCKCHAIN Admin'
 
 // Local Storage Keys
 export const STORAGE_KEYS = {

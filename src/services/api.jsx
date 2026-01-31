@@ -6,8 +6,8 @@ const getAuthHeaders = () => {
         ...(token && { 'Authorization' : `Bearer ${token}`}),
     };
 }
-export const BASE_URL = "https://steady-sharply-ibex.ngrok-free.app/"
+export const BASE_URL = import.meta.env.VITE_BASE_URL || "https://steady-sharply-ibex.ngrok-free.app/"
 export const API_BASE_URL = BASE_URL + "api";
-export const API_URL_IMAGE = "https://3b980f6eb586.ngrok-free.app/"; //địa chỉ luôn thay đổi
+export const API_URL_IMAGE = import.meta.env.VITE_API_URL_IMAGE || "https://182013707c82.ngrok-free.app/"; 
 
 export default getAuthHeaders;
